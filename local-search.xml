@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>《认知天性》笔记</title>
+    <link href="/2022/06/28/%E3%80%8A%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
+    <url>/2022/06/28/%E3%80%8A%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7%E3%80%8B%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<p>#概念： 《认知天性》 — 【小测验检索法】</p><p>重点：<code>间隔重复检索</code> 、<code>穿插</code>、<code>多角度</code>、</p><h3 id="1、是什么？不是什么？"><a href="#1、是什么？不是什么？" class="headerlink" title="1、是什么？不是什么？"></a>1、是什么？不是什么？</h3><blockquote><ul><li>间隔、重复、检索小测验</li><li>穿插步骤、知识点</li><li>多角度看知识点</li></ul></blockquote><h3 id="2、重点？如何正确使用？什么是错误使用？"><a href="#2、重点？如何正确使用？什么是错误使用？" class="headerlink" title="2、重点？如何正确使用？什么是错误使用？"></a>2、重点？如何正确使用？什么是错误使用？</h3><blockquote><p><font color="#f40"><code>间隔</code></font>：时间间隔参考【艾宾浩斯曲线】。本文主张，感觉忘记了就检索一下。</p><p><font color="#f40"><code>重复</code></font>：有意义的检索。机械重复，是无意义的突击，不适用于长期记忆。</p><p><font color="#f40"><code>检索</code></font>：即小测验，本质是费曼方法。</p><p><font color="#f40"><code>穿插</code></font>：多个知识点穿插、步骤穿插。此法解决了记忆中的前摄影响、后摄影响。</p><p><font color="#f40"><code>多角度</code></font>：多个角度看待知识点。记忆中加深记忆的一种方法。本质是因为世界是多角度才能看清的，正所谓“横看成岭侧成峰，远近高低各不同”，多角度，不会盲人摸象。</p></blockquote><p>###3、 与其他知识的联系？异同？</p><blockquote><p>费曼学习法、李笑来的概念论、心流flow</p><p>互相补充</p></blockquote><h3 id="4、如何做，优化？"><a href="#4、如何做，优化？" class="headerlink" title="4、如何做，优化？"></a>4、如何做，优化？</h3><blockquote><p>结合间隔检索学习法、加上心流，可以成为学霸。</p></blockquote><h3 id="5、其他"><a href="#5、其他" class="headerlink" title="5、其他"></a>5、其他</h3><blockquote><ol><li>邓宁-克鲁格效应：能力低的人高估自己，能力高的人低估自己。</li><li>神经元之间的联系就像<u>素描画</u>：多次、间隔用笔重描，才能清晰。每个神经元都要和其他的神经元进行连接，就是联系知识点。</li><li>你所做的事情，决定了你会成为<strong>怎样的人</strong>，同时决定了你<strong>有能力做什么</strong>。</li><li>反思、联系、刻意练习、利用记忆策略、提取信息、用自己的话来重新组织知识点。</li><li><img src="/../img/image-20220628234721015.png" alt="image-20220628234721015"></li><li><img src="/../img/image-20220628234741862.png" alt="image-20220628234741862"></li></ol></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+      <category>web前端</category>
+      
+      <category>哲学</category>
+      
+      <category>辩证法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>测试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>git使用步骤</title>
+    <link href="/2021/05/31/git%E4%BD%BF%E7%94%A8/"/>
+    <url>/2021/05/31/git%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<p>Git使用步骤</p><ol><li><p>初始配置（名称、邮箱、密钥） </p></li><li><p>开发流程</p><ol><li>本地建立分支</li><li></li><li>推送到远程前，先在本地验证项目可以跑起来。</li></ol></li><li><p>合并步骤：<br> 1、进入要合并的分支（如开发分支合并到master，则进入master目录）<br> git checkout master<br> git pull</p><p> 2、查看所有分支是否都pull下来了<br> git branch -a</p><p> 3、使用merge合并开发分支<br> git merge 分支名</p><p> 4、查看合并之后的状态<br> git status</p><p> 5、有冲突的话，通过IDE解决冲突；</p><p> 6、解决冲突之后，将冲突文件提交暂存区<br> git add 冲突文件</p><p> 7、提交merge之后的结果<br> git commit</p><p> 如果不是使用git commit -m “备注” ，那么git会自动将合并的结果作为备注，提交本地仓库；</p><p> 8、本地仓库代码提交远程仓库<br> git push</p><p> git将分支合并到分支，将master合并到分支的操作步骤是一样的。</p><p> 也可以用git checrry-pick commitid合并</p></li><li><p>初始配置（名称、邮箱、密钥）</p></li><li><p>开发流程</p><ol><li>本地建立分支</li><li></li><li>推送到远程前，先在本地验证项目可以跑起来。</li></ol></li><li><p>合并步骤：<br> 1、进入要合并的分支（如开发分支合并到master，则进入master目录）<br> git checkout master<br> git pull</p><p> 2、查看所有分支是否都pull下来了<br> git branch -a</p><p> 3、使用merge合并开发分支<br> git merge 分支名</p><p> 4、查看合并之后的状态<br> git status</p><p> 5、有冲突的话，通过IDE解决冲突；</p><p> 6、解决冲突之后，将冲突文件提交暂存区<br> git add 冲突文件</p><p> 7、提交merge之后的结果<br> git commit</p><p> 如果不是使用git commit -m “备注” ，那么git会自动将合并的结果作为备注，提交本地仓库；</p><p> 8、本地仓库代码提交远程仓库<br> git push</p><p> git将分支合并到分支，将master合并到分支的操作步骤是一样的。</p><p> 也可以用git checrry-pick commitid合并</p></li></ol><h2 id="GIT分支管理策略"><a href="#GIT分支管理策略" class="headerlink" title="GIT分支管理策略"></a>GIT分支管理策略</h2><h4 id="1-主分支Master：自动建立，对外发布版本"><a href="#1-主分支Master：自动建立，对外发布版本" class="headerlink" title="1. 主分支Master：自动建立，对外发布版本"></a>1. 主分支Master：自动建立，对外发布版本</h4><h4 id="2-开发分支Develop："><a href="#2-开发分支Develop：" class="headerlink" title="2. 开发分支Develop："></a>2. 开发分支Develop：</h4><ol><li><p>创建dev分支进行开发：git checkout -b develop master</p></li><li><p>切换到master分支：git checkout master</p></li><li><p>开发完成后，在master分支上对dev分支进行合并：git merge –no-ff develop</p><p>–no-ff：正常合并外，在Master分支上生成一个新节点。保证了版本的清晰演进。</p></li></ol><h4 id="3-临时性分支"><a href="#3-临时性分支" class="headerlink" title="3. 临时性分支"></a>3. 临时性分支</h4><ol><li><h6 id="feature分支：开发新特性。从dev分支中拷贝出来的，开发完成后合并到dev分支中。命名形式为：teature"><a href="#feature分支：开发新特性。从dev分支中拷贝出来的，开发完成后合并到dev分支中。命名形式为：teature" class="headerlink" title="feature分支：开发新特性。从dev分支中拷贝出来的，开发完成后合并到dev分支中。命名形式为：teature-"></a>feature分支：开发新特性。从dev分支中拷贝出来的，开发完成后合并到dev分支中。命名形式为：teature-</h6><ol><li><p>创建新分支：git checkout -b feature-x develop</p></li><li><p>开发完成后，合并到dev分支：   </p><blockquote><p>git checkout develop</p></blockquote><blockquote><p>git merge –no-ff feature-x</p></blockquote><ol start="3"><li>删除feature分支</li></ol><blockquote><p>git branch -d feature-x</p></blockquote></li></ol></li><li><p>release分支：预发布，供测试使用。从dev分支拷贝而来，开发完成后合并到master和dev中。命名：release-</p><ol><li><p>创建新分支：  </p><blockquote><p>git checkout -b release-1.2 develop</p></blockquote><ol start="2"><li>测试确认没有问题后，合并到master分支：</li></ol><blockquote><p>git checkout master</p></blockquote><blockquote><p>git merge –no-ff release-1.2</p></blockquote><blockquote><p>&#x2F;&#x2F; 对合并生成的新节点，生成一个tag标签</p><p>git tag -a 1.2</p></blockquote><ol start="3"><li>再合并到dev分支中</li></ol><blockquote><p>git checkout develop</p></blockquote><blockquote><p>git merge –no-ff release-1.2</p></blockquote><ol start="4"><li>最后，删除预发布分支</li></ol><blockquote><p>git branch -d release-1.2</p></blockquote></li></ol></li><li><p>fixbug分支：修复bug。从master分支拷贝而来，而后合并到master和dev分支。命名：fixbug-</p><ol><li><p>创建分支</p><blockquote><p>git checkout -b fixbug-0.1 master</p></blockquote><ol start="2"><li>修补结束后，合并到master分支</li></ol><blockquote><p>git checkout master</p></blockquote><blockquote><p>git merge –no-ff fixbug-0.1</p></blockquote><blockquote><p>git tag -a 0.1.1</p></blockquote><ol start="3"><li>再合并到dev中</li></ol><blockquote><p>git checkout develop</p></blockquote><blockquote><p>git merge –no-ff fixbug-0.1</p></blockquote><ol start="4"><li>最后，删除fixbug分支</li></ol><blockquote><p>git branch -d fixbug-0.1</p></blockquote></li></ol></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+      <category>web前端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
