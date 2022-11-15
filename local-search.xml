@@ -4,37 +4,6 @@
   
   
   <entry>
-    <title>二级域名SSL配置</title>
-    <link href="/2022/11/15/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8DSSL%E9%85%8D%E7%BD%AE/"/>
-    <url>/2022/11/15/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8DSSL%E9%85%8D%E7%BD%AE/</url>
-    
-    <content type="html"><![CDATA[<h2 id="一dns配置">一、DNS配置</h2><p>域名解析到二级域名</p><figure><imgsrc="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211151527242.png"alt="dns配置" /><figcaption aria-hidden="true">dns配置</figcaption></figure><h2 id="二ssl申请">二、SSL申请</h2><p>阿里云免费SSL申请</p><figure><imgsrc="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211151530117.png"alt="image-20221115153054466" /><figcaption aria-hidden="true">image-20221115153054466</figcaption></figure><h2 id="三nginx配置">三、Nginx配置</h2><p>nginx配置SSL地址、二级域名80端口（每个二级域名都有80端口）、443端口（用于https配置）</p><p><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211151534935.png" alt="image-20221115153424084" style="zoom: 67%;" /><imgsrc="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211151534183.png"alt="image-20221115153444344" /></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>技术</category>
-      
-      <category>web前端</category>
-      
-      <category>哲学</category>
-      
-      <category>辩证法</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>post</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>公务员考试笔记</title>
     <link href="/2022/09/26/%E8%80%83%E5%85%AC%E7%AC%94%E8%AE%B0/"/>
     <url>/2022/09/26/%E8%80%83%E5%85%AC%E7%AC%94%E8%AE%B0/</url>
