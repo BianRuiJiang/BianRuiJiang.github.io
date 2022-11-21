@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>域名解析ip:端口号</title>
+    <link href="/2022/11/21/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90ip-%E7%AB%AF%E5%8F%A3%E5%8F%B7/"/>
+    <url>/2022/11/21/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90ip-%E7%AB%AF%E5%8F%A3%E5%8F%B7/</url>
+    
+    <content type="html"><![CDATA[<h2 id="第一个设置中转域名">1、第一个，设置中转域名</h2><figure><imgsrc="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211211450064.png"alt="image-20221121145017490" /><figcaption aria-hidden="true">image-20221121145017490</figcaption></figure><h2 id="第二个设置真正的子域名">2、第二个，设置真正的子域名</h2><figure><imgsrc="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211211452520.png"alt="image-20221121145238298" /><figcaption aria-hidden="true">image-20221121145238298</figcaption></figure><h2id="总结需要一个中转二级域名先设置一个中转二级域名指向ip地址然后再设置一个新的二级域名指向前一个二级域名端口号就行了">总结：需要一个中转二级域名。先设置一个中转二级域名，指向ip地址。然后再设置一个新的二级域名，指向前一个二级域名+端口号。就行了。</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+      <category>运维</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>IT</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>公务员考试笔记</title>
     <link href="/2022/09/26/%E8%80%83%E5%85%AC%E7%AC%94%E8%AE%B0/"/>
     <url>/2022/09/26/%E8%80%83%E5%85%AC%E7%AC%94%E8%AE%B0/</url>
