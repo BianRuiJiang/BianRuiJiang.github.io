@@ -8,18 +8,14 @@
     <link href="/2024/07/06/%E3%80%8A%E5%8E%9F%E5%88%99%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
     <url>/2024/07/06/%E3%80%8A%E5%8E%9F%E5%88%99%E3%80%8B%E7%AC%94%E8%AE%B0/</url>
     
-    <content type="html"><![CDATA[<p>《原则》是美国桥水基金创始人瑞·达里奥写的。</p><p><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/pics/202407061756728.png" alt="原则" style="zoom:25%;" /></p><p>你好，这里是我的博客！</p><h1 id="一级标题">一级标题</h1><h1 id="一级标题-1">一级标题</h1><h1 id="一级标题-2">一级标题</h1><h1 id="一级标题-3">一级标题</h1><h1 id="一级标题-4">一级标题</h1><h2 id="二级标题">二级标题</h2><h2 id="二级标题-1">二级标题</h2><h2 id="二级标题-2">二级标题</h2><h2 id="二级标题-3">二级标题</h2><h2 id="二级标题-4">二级标题</h2>]]></content>
+    <content type="html"><![CDATA[<p>《原则》是美国桥水基金创始人瑞·达里奥写的。</p><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/pics/202407061756728.png" alt="原则" style="zoom:25%;" /><p>你好，这里是我的博客！</p><h1>一级标题</h1><h1>一级标题</h1><h1>一级标题</h1><h1>一级标题</h1><h1>一级标题</h1><h2 id="二级标题">二级标题</h2><h2 id="二级标题-2">二级标题</h2><h2 id="二级标题-3">二级标题</h2><h2 id="二级标题-4">二级标题</h2><h2 id="二级标题-5">二级标题</h2>]]></content>
     
     
     <categories>
       
-      <category>技术</category>
+      <category>成长</category>
       
-      <category>web前端</category>
-      
-      <category>哲学</category>
-      
-      <category>辩证法</category>
+      <category>笔记</category>
       
     </categories>
     
@@ -35,11 +31,38 @@
   
   
   <entry>
+    <title>二级域名解析到指定域名+端口号</title>
+    <link href="/2022/11/21/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%88%B0%E6%8C%87%E5%AE%9A%E5%9F%9F%E5%90%8D-%E7%AB%AF%E5%8F%A3%E5%8F%B7/"/>
+    <url>/2022/11/21/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%88%B0%E6%8C%87%E5%AE%9A%E5%9F%9F%E5%90%8D-%E7%AB%AF%E5%8F%A3%E5%8F%B7/</url>
+    
+    <content type="html"><![CDATA[<h2 id="一、DNS配置">一、DNS配置</h2><p>域名解析到二级域名</p><p><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211211520562.png" alt="dns配置"></p><h2 id="二、SSL申请">二、SSL申请</h2><p>阿里云免费SSL申请</p><p><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211211520023.png" alt="image-20221115153054466"></p><h2 id="三、Nginx配置">三、Nginx配置</h2><p>nginx配置SSL地址、二级域名80端口（每个二级域名都有80端口）、443端口（用于https配置）</p><p><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211211520512.png" alt="image-20221115153424084" style="zoom: 67%;" /><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211211520452.png" alt="image-20221115153444344"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+      <category>运维</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>域名解析</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>域名解析ip:端口号</title>
     <link href="/2022/11/21/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AEhttps/"/>
     <url>/2022/11/21/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AEhttps/</url>
     
-    <content type="html"><![CDATA[<h2 id="第一个设置中转域名">1、第一个，设置中转域名</h2><figure><imgsrc="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211211514270.png"alt="image-20221121151405839" /><figcaption aria-hidden="true">image-20221121151405839</figcaption></figure><h2 id="第二个设置真正的子域名">2、第二个，设置真正的子域名</h2><figure><imgsrc="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211211452520.png"alt="image-20221121145238298" /><figcaption aria-hidden="true">image-20221121145238298</figcaption></figure><h2id="总结需要一个中转二级域名先设置一个中转二级域名指向ip地址然后再设置一个新的二级域名指向前一个二级域名端口号就行了">总结：需要一个中转二级域名。先设置一个中转二级域名，指向ip地址。然后再设置一个新的二级域名，指向前一个二级域名+端口号。就行了。</h2>]]></content>
+    <content type="html"><![CDATA[<h2 id="1、第一个，设置中转域名">1、第一个，设置中转域名</h2><p><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211211514270.png" alt="image-20221121151405839"></p><h2 id="2、第二个，设置真正的子域名">2、第二个，设置真正的子域名</h2><p><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202211211452520.png" alt="image-20221121145238298"></p><h2 id="总结：需要一个中转二级域名。先设置一个中转二级域名，指向ip地址。然后再设置一个新的二级域名，指向前一个二级域名-端口号。就行了。">总结：需要一个中转二级域名。先设置一个中转二级域名，指向ip地址。然后再设置一个新的二级域名，指向前一个二级域名+端口号。就行了。</h2>]]></content>
     
     
     <categories>
@@ -66,7 +89,7 @@
     <link href="/2022/09/26/%E8%80%83%E5%85%AC%E7%AC%94%E8%AE%B0/"/>
     <url>/2022/09/26/%E8%80%83%E5%85%AC%E7%AC%94%E8%AE%B0/</url>
     
-    <content type="html"><![CDATA[<h1 id="公务员考试笔记">公务员考试笔记</h1><p>MAKE：<code>快速、压缩信息</code></p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs">资料分析：<br>压缩信息 、计算、粗调计算 <br>做题两步走：分析材料梗概（审题），确定题目类型（定型）<br>命题人出题不会死考计算，会宏观把控题目方向。<br>逻辑判断/定义：压缩信息、逻辑<br>图形推理：大小、方向、面积、拐点等等<br>推理判断：逻辑<br>数量关系：计算<br>言语：压缩、逻辑<br>常识：<br>申论：压缩信息、官话<br></code></pre></td></tr></table></figure><p>#2017行测</p><h2 id="资料分析">资料分析</h2><p>116<code>增长率</code> 和 <code>增长速度</code> 118 算补集 120除法运算，注意单位。比重升降，分母可能不变。</p><p>121压缩信息：化文字为图表（心中有数）。题目陷阱：移花接木，偷换概念</p><p>#2021行测</p><h2 id="资料分析-1">资料分析</h2><blockquote><p>命题人并不是让你计算每一题，要粗精结合，宏观把控和微观计算</p></blockquote><p>135、求同比增加额相差。A2直接给出，求A1。一个增，一个减，差距拉大。而选项往往误导先绝对值，后作差，典型错误。<img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202210021812881.png" alt="image-20221002181218637" style="zoom: 25%;" /></p><p><font color='#DA345C'>笑脸公式</font></p>]]></content>
+    <content type="html"><![CDATA[<h1>公务员考试笔记</h1><p>MAKE：<code>快速、压缩信息</code></p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs">资料分析：<br>压缩信息 、计算、粗调计算 <br>做题两步走：分析材料梗概（审题），确定题目类型（定型）<br>命题人出题不会死考计算，会宏观把控题目方向。<br>逻辑判断/定义：压缩信息、逻辑<br>图形推理：大小、方向、面积、拐点等等<br>推理判断：逻辑<br>数量关系：计算<br>言语：压缩、逻辑<br>常识：<br>申论：压缩信息、官话<br></code></pre></td></tr></table></figure><p>#2017行测</p><h2 id="资料分析">资料分析</h2><p>116<code>增长率</code> 和 <code>增长速度</code><br>118 算补集<br>120 除法运算，注意单位。比重升降，分母可能不变。</p><p>121 压缩信息：化文字为图表（心中有数）。题目陷阱：移花接木，偷换概念</p><p>#2021行测</p><h2 id="资料分析-2">资料分析</h2><blockquote><p>命题人并不是让你计算每一题，要粗精结合，宏观把控和微观计算</p></blockquote><p>135、求同比增加额相差。A2直接给出，求A1。一个增，一个减，差距拉大。而选项往往误导先绝对值，后作差，典型错误。<br><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202210021812881.png" alt="image-20221002181218637" style="zoom: 25%;" /></p><p><font color='#DA345C'>笑脸公式</font></p>]]></content>
     
     
     <categories>
@@ -91,7 +114,7 @@
     <link href="/2022/06/28/%E3%80%8A%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
     <url>/2022/06/28/%E3%80%8A%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7%E3%80%8B%E7%AC%94%E8%AE%B0/</url>
     
-    <content type="html"><![CDATA[<p>#概念： 《认知天性》 — 【小测验检索法】</p><p>重点：<code>间隔重复检索</code>、<code>穿插</code>、<code>多角度</code></p><h3 id="是什么不是什么">1、是什么？不是什么？</h3><blockquote><ul><li>间隔、重复、检索小测验</li><li>穿插步骤、知识点</li><li>多角度看知识点</li></ul></blockquote><h3id="重点如何正确使用什么是错误使用">2、重点？如何正确使用？什么是错误使用？</h3><blockquote><p><font color="#f40"><code>间隔</code></font>：时间间隔参考【艾宾浩斯曲线】。本文主张，感觉忘记了就检索一下。</p><p><font color="#f40"><code>重复</code></font>：有意义的检索。机械重复，是无意义的突击，不适用于长期记忆。</p><p><font color="#f40"><code>检索</code></font>：即小测验，本质是费曼方法。</p><p><font color="#f40"><code>穿插</code></font>：多个知识点穿插、步骤穿插。此法解决了记忆中的前摄影响、后摄影响。</p><p><font color="#f40"><code>多角度</code></font>：多个角度看待知识点。记忆中加深记忆的一种方法。本质是因为世界是多角度才能看清的，正所谓“横看成岭侧成峰，远近高低各不同”，多角度，不会盲人摸象。</p></blockquote><p>###3、 与其他知识的联系？异同？</p><blockquote><p>费曼学习法、李笑来的概念论、心流flow</p><p>互相补充</p></blockquote><h3 id="如何做优化">4、如何做，优化？</h3><blockquote><p>结合间隔检索学习法、加上心流，可以成为学霸。</p></blockquote><h3 id="其他">5、其他</h3><blockquote><ol type="1"><li><p>邓宁-克鲁格效应：能力低的人高估自己，能力高的人低估自己。</p></li><li><p>神经元之间的联系就像<u>素描画</u>：多次、间隔用笔重描，才能清晰。每个神经元都要和其他的神经元进行连接，就是联系知识点。</p></li><li><p>你所做的事情，决定了你会成为<strong>怎样的人</strong>，同时决定了你<strong>有能力做什么</strong>。</p></li><li><p>反思、联系、刻意练习、利用记忆策略、提取信息、用自己的话来重新组织知识点。</p><p><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202209141054123.png" alt="image-20220914105408080" style="zoom:33%;" /></p><figure><imgsrc="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202209141053462.png"alt="image-20220914105333407" /><figcaption aria-hidden="true">image-20220914105333407</figcaption></figure></li></ol></blockquote>]]></content>
+    <content type="html"><![CDATA[<p>#概念： 《认知天性》 — 【小测验检索法】</p><p>重点：<code>间隔重复检索</code> 、<code>穿插</code>、<code>多角度</code></p><h3 id="1、是什么？不是什么？">1、是什么？不是什么？</h3><blockquote><ul><li>间隔、重复、检索小测验</li><li>穿插步骤、知识点</li><li>多角度看知识点</li></ul></blockquote><h3 id="2、重点？如何正确使用？什么是错误使用？">2、重点？如何正确使用？什么是错误使用？</h3><blockquote><p><font color="#f40"><code>间隔</code></font>：时间间隔参考【艾宾浩斯曲线】。本文主张，感觉忘记了就检索一下。</p><p><font color="#f40"><code>重复</code></font>：有意义的检索。机械重复，是无意义的突击，不适用于长期记忆。</p><p><font color="#f40"><code>检索</code></font>：即小测验，本质是费曼方法。</p><p><font color="#f40"><code>穿插</code></font>：多个知识点穿插、步骤穿插。此法解决了记忆中的前摄影响、后摄影响。</p><p><font color="#f40"><code>多角度</code></font>：多个角度看待知识点。记忆中加深记忆的一种方法。本质是因为世界是多角度才能看清的，正所谓“横看成岭侧成峰，远近高低各不同”，多角度，不会盲人摸象。</p></blockquote><p>###3、 与其他知识的联系？异同？</p><blockquote><p>费曼学习法、李笑来的概念论、心流flow</p><p>互相补充</p></blockquote><h3 id="4、如何做，优化？">4、如何做，优化？</h3><blockquote><p>结合间隔检索学习法、加上心流，可以成为学霸。</p></blockquote><h3 id="5、其他">5、其他</h3><blockquote><ol><li><p>邓宁-克鲁格效应：能力低的人高估自己，能力高的人低估自己。</p></li><li><p>神经元之间的联系就像<u>素描画</u>：多次、间隔用笔重描，才能清晰。每个神经元都要和其他的神经元进行连接，就是联系知识点。</p></li><li><p>你所做的事情，决定了你会成为<strong>怎样的人</strong>，同时决定了你<strong>有能力做什么</strong>。</p></li><li><p>反思、联系、刻意练习、利用记忆策略、提取信息、用自己的话来重新组织知识点。</p><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202209141054123.png" alt="image-20220914105408080" style="zoom:33%;" /><p><img src="https://cdn.jsdelivr.net/gh/BianRuiJiang/picture-bed@main/img/202209141053462.png" alt="image-20220914105333407"></p></li></ol></blockquote>]]></content>
     
     
     <categories>
@@ -122,7 +145,7 @@
     <link href="/2021/05/31/git%E4%BD%BF%E7%94%A8/"/>
     <url>/2021/05/31/git%E4%BD%BF%E7%94%A8/</url>
     
-    <content type="html"><![CDATA[<p>Git使用步骤</p><ol type="1"><li><p>初始配置（名称、邮箱、密钥）</p></li><li><p>开发流程</p><ol type="1"><li>本地建立分支</li><li></li><li>推送到远程前，先在本地验证项目可以跑起来。</li></ol></li><li><p>合并步骤：1、进入要合并的分支（如开发分支合并到master，则进入master目录） gitcheckout master git pull</p><p>2、查看所有分支是否都pull下来了 git branch -a</p><p>3、使用merge合并开发分支 git merge 分支名</p><p>4、查看合并之后的状态 git status</p><p>5、有冲突的话，通过IDE解决冲突；</p><p>6、解决冲突之后，将冲突文件提交暂存区 git add 冲突文件</p><p>7、提交merge之后的结果 git commit</p><p>如果不是使用git commit -m "备注"，那么git会自动将合并的结果作为备注，提交本地仓库；</p><p>8、本地仓库代码提交远程仓库 git push</p><p>git将分支合并到分支，将master合并到分支的操作步骤是一样的。</p><p>也可以用git checrry-pick commitid合并</p></li><li><p>初始配置（名称、邮箱、密钥）</p></li><li><p>开发流程</p><ol type="1"><li>本地建立分支</li><li></li><li>推送到远程前，先在本地验证项目可以跑起来。</li></ol></li><li><p>合并步骤：1、进入要合并的分支（如开发分支合并到master，则进入master目录） gitcheckout master git pull</p><p>2、查看所有分支是否都pull下来了 git branch -a</p><p>3、使用merge合并开发分支 git merge 分支名</p><p>4、查看合并之后的状态 git status</p><p>5、有冲突的话，通过IDE解决冲突；</p><p>6、解决冲突之后，将冲突文件提交暂存区 git add 冲突文件</p><p>7、提交merge之后的结果 git commit</p><p>如果不是使用git commit -m "备注"，那么git会自动将合并的结果作为备注，提交本地仓库；</p><p>8、本地仓库代码提交远程仓库 git push</p><p>git将分支合并到分支，将master合并到分支的操作步骤是一样的。</p><p>也可以用git checrry-pick commitid合并</p></li></ol><h2 id="git分支管理策略">GIT分支管理策略</h2><h4 id="主分支master自动建立对外发布版本">1.主分支Master：自动建立，对外发布版本</h4><h4 id="开发分支develop">2. 开发分支Develop：</h4><ol type="1"><li><p>创建dev分支进行开发：git checkout -b develop master</p></li><li><p>切换到master分支：git checkout master</p></li><li><p>开发完成后，在master分支上对dev分支进行合并：git merge --no-ffdevelop</p><p>--no-ff：正常合并外，在Master分支上生成一个新节点。保证了版本的清晰演进。</p></li></ol><h4 id="临时性分支">3. 临时性分支</h4><ol type="1"><li><h6id="feature分支开发新特性从dev分支中拷贝出来的开发完成后合并到dev分支中命名形式为teature-">feature分支：开发新特性。从dev分支中拷贝出来的，开发完成后合并到dev分支中。命名形式为：teature-</h6><ol type="1"><li><p>创建新分支：git checkout -b feature-x develop</p></li><li><p>开发完成后，合并到dev分支：</p><blockquote><p>git checkout develop</p></blockquote><blockquote><p>git merge --no-ff feature-x</p></blockquote><ol start="3" type="1"><li>删除feature分支</li></ol><blockquote><p>git branch -d feature-x</p></blockquote></li></ol></li><li><p>release分支：预发布，供测试使用。从dev分支拷贝而来，开发完成后合并到master和dev中。命名：release-</p><ol type="1"><li><p>创建新分支：</p><blockquote><p>git checkout -b release-1.2 develop</p></blockquote><ol start="2" type="1"><li>测试确认没有问题后，合并到master分支：</li></ol><blockquote><p>git checkout master</p></blockquote><blockquote><p>git merge --no-ff release-1.2</p></blockquote><blockquote><p>// 对合并生成的新节点，生成一个tag标签</p><p>git tag -a 1.2</p></blockquote><ol start="3" type="1"><li>再合并到dev分支中</li></ol><blockquote><p>git checkout develop</p></blockquote><blockquote><p>git merge --no-ff release-1.2</p></blockquote><ol start="4" type="1"><li>最后，删除预发布分支</li></ol><blockquote><p>git branch -d release-1.2</p></blockquote></li></ol></li><li><p>fixbug分支：修复bug。从master分支拷贝而来，而后合并到master和dev分支。命名：fixbug-</p><ol type="1"><li><p>创建分支</p><blockquote><p>git checkout -b fixbug-0.1 master</p></blockquote><ol start="2" type="1"><li>修补结束后，合并到master分支</li></ol><blockquote><p>git checkout master</p></blockquote><blockquote><p>git merge --no-ff fixbug-0.1</p></blockquote><blockquote><p>git tag -a 0.1.1</p></blockquote><ol start="3" type="1"><li>再合并到dev中</li></ol><blockquote><p>git checkout develop</p></blockquote><blockquote><p>git merge --no-ff fixbug-0.1</p></blockquote><ol start="4" type="1"><li>最后，删除fixbug分支</li></ol><blockquote><p>git branch -d fixbug-0.1</p></blockquote></li></ol></li></ol>]]></content>
+    <content type="html"><![CDATA[<p>Git使用步骤</p><ol><li><p>初始配置（名称、邮箱、密钥）</p></li><li><p>开发流程</p><ol><li>本地建立分支</li><li></li><li>推送到远程前，先在本地验证项目可以跑起来。</li></ol></li><li><p>合并步骤：<br>1、进入要合并的分支（如开发分支合并到master，则进入master目录）<br>git checkout master<br>git pull</p><p>2、查看所有分支是否都pull下来了<br>git branch -a</p><p>3、使用merge合并开发分支<br>git merge 分支名</p><p>4、查看合并之后的状态<br>git status</p><p>5、有冲突的话，通过IDE解决冲突；</p><p>6、解决冲突之后，将冲突文件提交暂存区<br>git add 冲突文件</p><p>7、提交merge之后的结果<br>git commit</p><p>如果不是使用git commit -m “备注” ，那么git会自动将合并的结果作为备注，提交本地仓库；</p><p>8、本地仓库代码提交远程仓库<br>git push</p><p>git将分支合并到分支，将master合并到分支的操作步骤是一样的。</p><p>也可以用git checrry-pick commitid合并</p></li><li><p>初始配置（名称、邮箱、密钥）</p></li><li><p>开发流程</p><ol><li>本地建立分支</li><li></li><li>推送到远程前，先在本地验证项目可以跑起来。</li></ol></li><li><p>合并步骤：<br>1、进入要合并的分支（如开发分支合并到master，则进入master目录）<br>git checkout master<br>git pull</p><p>2、查看所有分支是否都pull下来了<br>git branch -a</p><p>3、使用merge合并开发分支<br>git merge 分支名</p><p>4、查看合并之后的状态<br>git status</p><p>5、有冲突的话，通过IDE解决冲突；</p><p>6、解决冲突之后，将冲突文件提交暂存区<br>git add 冲突文件</p><p>7、提交merge之后的结果<br>git commit</p><p>如果不是使用git commit -m “备注” ，那么git会自动将合并的结果作为备注，提交本地仓库；</p><p>8、本地仓库代码提交远程仓库<br>git push</p><p>git将分支合并到分支，将master合并到分支的操作步骤是一样的。</p><p>也可以用git checrry-pick commitid合并</p></li></ol><h2 id="GIT分支管理策略">GIT分支管理策略</h2><h4 id="1-主分支Master：自动建立，对外发布版本">1. 主分支Master：自动建立，对外发布版本</h4><h4 id="2-开发分支Develop：">2. 开发分支Develop：</h4><ol><li><p>创建dev分支进行开发：git checkout -b develop master</p></li><li><p>切换到master分支：git checkout master</p></li><li><p>开发完成后，在master分支上对dev分支进行合并：git merge --no-ff develop</p><p>–no-ff：正常合并外，在Master分支上生成一个新节点。保证了版本的清晰演进。</p></li></ol><h4 id="3-临时性分支">3. 临时性分支</h4><ol><li><h6 id="feature分支：开发新特性。从dev分支中拷贝出来的，开发完成后合并到dev分支中。命名形式为：teature">feature分支：开发新特性。从dev分支中拷贝出来的，开发完成后合并到dev分支中。命名形式为：teature-</h6><ol><li><p>创建新分支：git checkout -b feature-x develop</p></li><li><p>开发完成后，合并到dev分支：</p><blockquote><p>git checkout develop</p></blockquote><blockquote><p>git merge --no-ff feature-x</p></blockquote><ol start="3"><li>删除feature分支</li></ol><blockquote><p>git branch -d feature-x</p></blockquote></li></ol></li><li><p>release分支：预发布，供测试使用。从dev分支拷贝而来，开发完成后合并到master和dev中。命名：release-</p><ol><li><p>创建新分支：</p><blockquote><p>git checkout -b release-1.2 develop</p></blockquote><ol start="2"><li>测试确认没有问题后，合并到master分支：</li></ol><blockquote><p>git checkout master</p></blockquote><blockquote><p>git merge --no-ff release-1.2</p></blockquote><blockquote><p>// 对合并生成的新节点，生成一个tag标签</p><p>git tag -a 1.2</p></blockquote><ol start="3"><li>再合并到dev分支中</li></ol><blockquote><p>git checkout develop</p></blockquote><blockquote><p>git merge --no-ff release-1.2</p></blockquote><ol start="4"><li>最后，删除预发布分支</li></ol><blockquote><p>git branch -d release-1.2</p></blockquote></li></ol></li><li><p>fixbug分支：修复bug。从master分支拷贝而来，而后合并到master和dev分支。命名：fixbug-</p><ol><li><p>创建分支</p><blockquote><p>git checkout -b fixbug-0.1 master</p></blockquote><ol start="2"><li>修补结束后，合并到master分支</li></ol><blockquote><p>git checkout master</p></blockquote><blockquote><p>git merge --no-ff fixbug-0.1</p></blockquote><blockquote><p>git tag -a 0.1.1</p></blockquote><ol start="3"><li>再合并到dev中</li></ol><blockquote><p>git checkout develop</p></blockquote><blockquote><p>git merge --no-ff fixbug-0.1</p></blockquote><ol start="4"><li>最后，删除fixbug分支</li></ol><blockquote><p>git branch -d fixbug-0.1</p></blockquote></li></ol></li></ol>]]></content>
     
     
     <categories>
