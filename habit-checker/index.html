@@ -1,0 +1,979 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>习惯打卡</title>
+  <style>
+    :root {
+      --bg: #f6f3ec;
+      --card: #ffffff;
+      --ink: #232a26;
+      --muted: #7b827c;
+      --line: #e7e2d8;
+      --green: #2f7d4f;
+      --green-soft: #e5f2e9;
+      --green-deep: #1d5c38;
+      --amber: #d79a3a;
+      --red: #c75c4a;
+      --shadow: 0 18px 45px rgba(49, 56, 48, 0.09);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(215, 154, 58, 0.10), transparent 32%),
+        radial-gradient(circle at 88% 18%, rgba(47, 125, 79, 0.10), transparent 30%),
+        var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: min(640px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+
+    header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .eyebrow svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    h1 {
+      margin-top: 4px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .date-line {
+      color: var(--muted);
+      font-size: 14px;
+      padding-bottom: 4px;
+    }
+
+    .summary {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 24px 20px;
+      margin-bottom: 18px;
+    }
+
+    .summary-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .count-block {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .count {
+      font-size: 40px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--green-deep);
+      line-height: 1;
+    }
+
+    .count-label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .streak {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fbf3df;
+      color: #9a6a17;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .streak svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--amber);
+      stroke: var(--amber);
+    }
+
+    .progress-track {
+      height: 8px;
+      border-radius: 999px;
+      background: #eee9df;
+      margin-top: 16px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--green), #55a06f);
+      transition: width 0.35s ease;
+    }
+
+    .progress-caption {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .panel-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .panel-hint {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    #habitList {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 44px;
+    }
+
+    .habit-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 13px 14px;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .habit-row:hover {
+      border-color: #d3cdbf;
+      background: #fdfcf9;
+    }
+
+    .habit-row.done {
+      background: var(--green-soft);
+      border-color: #c7e3cf;
+    }
+
+    .check {
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #c8c4b9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: transparent;
+      transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+      position: relative;
+    }
+
+    .habit-row.done .check {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+      transform: scale(1.04);
+    }
+
+    .check svg {
+      width: 15px;
+      height: 15px;
+      stroke-width: 3;
+    }
+
+    .habit-main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .habit-emoji {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      border-radius: 9px;
+      background: #f4f1e9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      border: 0;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+
+    .habit-emoji:hover {
+      background: #ece7dc;
+    }
+
+    .habit-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: color 0.18s ease;
+    }
+
+    .habit-row.done .habit-name {
+      color: var(--green-deep);
+      text-decoration: line-through;
+      text-decoration-color: rgba(29, 92, 56, 0.55);
+    }
+
+    .streak-mini {
+      flex: 0 0 auto;
+      font-size: 12px;
+      color: #9a6a17;
+      background: #fbf3df;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .streak-mini.hidden {
+      display: none;
+    }
+
+    .delete-btn {
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      border: 0;
+      background: transparent;
+      color: #b5b0a4;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.18s ease, background 0.18s ease, color 0.18s ease;
+    }
+
+    .habit-row:hover .delete-btn,
+    .delete-btn:focus-visible {
+      opacity: 1;
+    }
+
+    .delete-btn:hover {
+      background: #fbeae6;
+      color: var(--red);
+    }
+
+    .delete-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .empty {
+      border: 1px dashed #d6d0c3;
+      border-radius: 12px;
+      padding: 26px 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .add-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .add-input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fff;
+      padding: 12px 14px;
+      font-size: 15px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .add-input::placeholder {
+      color: #b3ada0;
+    }
+
+    .add-input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(47, 125, 79, 0.14);
+    }
+
+    .add-btn {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      border: 0;
+      border-radius: 11px;
+      background: var(--green);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 0 18px;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.12s ease;
+    }
+
+    .add-btn:hover {
+      background: var(--green-deep);
+    }
+
+    .add-btn:active {
+      transform: scale(0.97);
+    }
+
+    .add-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .week-panel {
+      margin-top: 18px;
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+    }
+
+    .day-cell {
+      text-align: center;
+    }
+
+    .day-label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 7px;
+      display: block;
+    }
+
+    .day-label.today {
+      color: var(--green-deep);
+      font-weight: 700;
+    }
+
+    .day-dot {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 2px solid #e6e0d4;
+      background: transparent;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .day-dot.filled {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .day-dot.partial {
+      border-color: #8fc3a2;
+      background: repeating-linear-gradient(
+        135deg,
+        #dff0e4 0 46%,
+        transparent 46% 100%
+      );
+      background-size: 100% 100%;
+    }
+
+    .day-dot.today {
+      box-shadow: 0 0 0 3px rgba(47, 125, 79, 0.16);
+    }
+
+    .day-count {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block;
+      font-variant-numeric: tabular-nums;
+    }
+
+    footer {
+      text-align: center;
+      color: #aaa395;
+      font-size: 12px;
+      margin-top: 26px;
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        width: min(100% - 20px, 640px);
+        padding-top: 22px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .summary {
+        padding: 18px;
+      }
+
+      .panel {
+        padding: 16px;
+      }
+
+      .count {
+        font-size: 34px;
+      }
+
+      .streak {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+
+      .habit-row {
+        padding: 11px 12px;
+        gap: 11px;
+      }
+
+      .delete-btn {
+        opacity: 1;
+      }
+
+      .add-btn {
+        width: 46px;
+        padding: 0;
+      }
+
+      .add-btn span {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div>
+        <div class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          习惯打卡
+        </div>
+        <h1 id="todayTitle">今天</h1>
+      </div>
+      <div class="date-line" id="dateLine"></div>
+    </header>
+
+    <section class="summary" aria-label="今日进度">
+      <div class="summary-top">
+        <div class="count-block">
+          <span class="count" id="doneCount">0</span>
+          <span class="count-label">/ <span id="totalCount">0</span> 项完成</span>
+        </div>
+        <div class="streak">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <path d="M22 4L12 14.01l-3-3"></path>
+          </svg>
+          连续 <span id="streakCount">0</span> 天
+        </div>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="今日完成进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressTrack">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-caption">
+        <span>今日完成进度</span>
+        <span id="progressPercent">0%</span>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="今日习惯">
+      <div class="panel-head">
+        <span class="panel-title">今天的习惯</span>
+        <span class="panel-hint" id="listHint">点一下打勾</span>
+      </div>
+      <div id="habitList"></div>
+      <form class="add-form" id="addForm">
+        <input class="add-input" id="habitInput" type="text" maxlength="20"
+               placeholder="添加一个习惯，比如跑步 30 分钟" autocomplete="off">
+        <button class="add-btn" type="submit" aria-label="添加习惯">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>添加</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="panel week-panel" aria-label="近一周概览">
+      <div class="panel-head">
+        <span class="panel-title">近一周</span>
+        <span class="panel-hint">每天完成的比例</span>
+      </div>
+      <div class="week-grid" id="weekGrid"></div>
+    </section>
+
+    <footer>数据保存在这台设备的浏览器里</footer>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var STORAGE_KEY = "habit-checker-v1";
+      var TODAY_KEY = "habit-checker-today-v1";
+      var DEFAULT_HABITS = [
+        { name: "喝水", emoji: "💧" },
+        { name: "运动", emoji: "🏃" },
+        { name: "读书", emoji: "📖" }
+      ];
+      var EMOJI_POOL = ["💧", "🏃", "📖", "🧘", "✍️", "🎯", "🥗", "😴", "🎨", "🧠", "🌅", "💪"];
+
+      var state = {
+        habits: [],
+        records: {}
+      };
+
+      var today = localDateString(new Date());
+      var listEl = document.getElementById("habitList");
+      var weekGridEl = document.getElementById("weekGrid");
+      var inputEl = document.getElementById("habitInput");
+      var formEl = document.getElementById("addForm");
+
+      function load() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            var records = parsed && parsed.records && typeof parsed.records === "object" &&
+              !Array.isArray(parsed.records) ? parsed.records : {};
+            var habits = [];
+            if (parsed && Array.isArray(parsed.habits)) {
+              habits = parsed.habits
+                .filter(function (h) {
+                  return h && typeof h.name === "string" && h.name.trim() !== "";
+                })
+                .map(function (h) {
+                  return {
+                    id: typeof h.id === "string" && h.id ? h.id : makeHabitId(),
+                    name: h.name,
+                    emoji: typeof h.emoji === "string" && h.emoji ? h.emoji : randomEmoji(),
+                    createdAt: typeof h.createdAt === "number" ? h.createdAt : Date.now()
+                  };
+                });
+            }
+            if (habits.length > 0) {
+              var validIds = {};
+              habits.forEach(function (h) { validIds[h.id] = true; });
+              var cleanRecords = {};
+              Object.keys(records).forEach(function (id) {
+                if (validIds[id] && records[id] && typeof records[id] === "object") {
+                  cleanRecords[id] = records[id];
+                }
+              });
+              state.habits = habits;
+              state.records = cleanRecords;
+              save();
+              return;
+            }
+          }
+        } catch (e) {
+          // 损坏的数据直接重新初始化
+        }
+        state.habits = DEFAULT_HABITS.map(function (habit) {
+          return makeHabit(habit.name, habit.emoji);
+        });
+        state.records = {};
+        save();
+      }
+
+      function makeHabit(name, emoji) {
+        return {
+          id: makeHabitId(),
+          name: name,
+          emoji: emoji || randomEmoji(),
+          createdAt: Date.now()
+        };
+      }
+
+      function makeHabitId() {
+        return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+      }
+
+      function randomEmoji() {
+        return EMOJI_POOL[Math.floor(Math.random() * EMOJI_POOL.length)];
+      }
+
+      function save() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        localStorage.setItem(TODAY_KEY, today);
+      }
+
+      function localDateString(date) {
+        var y = date.getFullYear();
+        var m = String(date.getMonth() + 1).padStart(2, "0");
+        var d = String(date.getDate()).padStart(2, "0");
+        return y + "-" + m + "-" + d;
+      }
+
+      function isDone(habitId) {
+        var day = state.records[habitId];
+        return !!(day && day[today]);
+      }
+
+      function toggleHabit(habitId) {
+        var day = state.records[habitId] || (state.records[habitId] = {});
+        if (day[today]) {
+          delete day[today];
+        } else {
+          day[today] = true;
+        }
+        save();
+        updateRow(habitId);
+        renderSummary();
+        renderWeek();
+      }
+
+      function cycleEmoji(habitId) {
+        var habit = state.habits.find(function (h) { return h.id === habitId; });
+        if (!habit) return;
+        var index = EMOJI_POOL.indexOf(habit.emoji);
+        habit.emoji = EMOJI_POOL[(index + 1) % EMOJI_POOL.length];
+        save();
+        var emojiBtn = listEl.querySelector('.habit-row[data-id="' + habitId + '"] .habit-emoji');
+        if (emojiBtn) emojiBtn.textContent = habit.emoji;
+      }
+
+      function deleteHabit(habitId) {
+        state.habits = state.habits.filter(function (h) { return h.id !== habitId; });
+        delete state.records[habitId];
+        save();
+        render();
+      }
+
+      function addHabit(name) {
+        var trimmed = name.trim();
+        if (!trimmed) return;
+        var exists = state.habits.some(function (h) {
+          return String(h.name).toLowerCase() === trimmed.toLowerCase();
+        });
+        if (exists) {
+          inputEl.value = "";
+          inputEl.placeholder = "这个习惯已经添加过了";
+          inputEl.focus();
+          setTimeout(function () {
+            if (!inputEl.value) inputEl.placeholder = "添加一个习惯，比如跑步 30 分钟";
+          }, 1800);
+          return;
+        }
+        state.habits.push(makeHabit(trimmed));
+        save();
+        render();
+      }
+
+      function streakFor(habitId) {
+        var streak = 0;
+        var d = new Date();
+        if (!isDone(habitId)) {
+          d.setDate(d.getDate() - 1);
+        }
+        while (true) {
+          var key = localDateString(d);
+          var day = state.records[habitId];
+          if (day && day[key]) {
+            streak += 1;
+            d.setDate(d.getDate() - 1);
+          } else {
+            break;
+          }
+        }
+        return streak;
+      }
+
+      function maxStreak() {
+        var best = 0;
+        state.habits.forEach(function (habit) {
+          best = Math.max(best, streakFor(habit.id));
+        });
+        return best;
+      }
+
+      function weekDays() {
+        var days = [];
+        var d = new Date();
+        d.setDate(d.getDate() - 6);
+        for (var i = 0; i < 7; i++) {
+          days.push(localDateString(d));
+          d.setDate(d.getDate() + 1);
+        }
+        return days;
+      }
+
+      function doneCountFor(dateKey) {
+        var count = 0;
+        state.habits.forEach(function (habit) {
+          var day = state.records[habit.id];
+          if (day && day[dateKey]) count += 1;
+        });
+        return count;
+      }
+
+      function habitRowHtml(habit) {
+        var done = isDone(habit.id);
+        var streak = streakFor(habit.id);
+        var row = document.createElement("button");
+        row.type = "button";
+        row.className = "habit-row" + (done ? " done" : "");
+        row.setAttribute("data-id", habit.id);
+        row.setAttribute("aria-pressed", done ? "true" : "false");
+        row.title = done ? "点击取消完成" : "点击打勾";
+
+        var check = document.createElement("span");
+        check.className = "check";
+        check.setAttribute("aria-hidden", "true");
+        check.innerHTML =
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">' +
+          '<polyline points="20 6 9 17 4 12"></polyline></svg>';
+
+        var main = document.createElement("span");
+        main.className = "habit-main";
+
+        var emojiBtn = document.createElement("button");
+        emojiBtn.type = "button";
+        emojiBtn.className = "habit-emoji";
+        emojiBtn.textContent = habit.emoji;
+        emojiBtn.title = "换个图标";
+        emojiBtn.addEventListener("click", function (event) {
+          event.stopPropagation();
+          cycleEmoji(habit.id);
+        });
+
+        var name = document.createElement("span");
+        name.className = "habit-name";
+        name.textContent = habit.name;
+
+        var mini = document.createElement("span");
+        mini.className = "streak-mini" + (streak < 2 ? " hidden" : "");
+        mini.textContent = "连续 " + streak + " 天";
+
+        var del = document.createElement("button");
+        del.type = "button";
+        del.className = "delete-btn";
+        del.setAttribute("aria-label", "删除 " + habit.name);
+        del.title = "删除习惯";
+        del.innerHTML =
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+          '<polyline points="3 6 5 6 21 6"></polyline>' +
+          '<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>' +
+          '</svg>';
+        del.addEventListener("click", function (event) {
+          event.stopPropagation();
+          deleteHabit(habit.id);
+        });
+
+        main.appendChild(emojiBtn);
+        main.appendChild(name);
+        row.appendChild(check);
+        row.appendChild(main);
+        row.appendChild(mini);
+        row.appendChild(del);
+        row.addEventListener("click", function () {
+          toggleHabit(habit.id);
+        });
+        return row;
+      }
+
+      function renderList() {
+        listEl.innerHTML = "";
+        if (state.habits.length === 0) {
+          var empty = document.createElement("div");
+          empty.className = "empty";
+          empty.textContent = "还没有习惯，先在上面添加一个吧";
+          listEl.appendChild(empty);
+          return;
+        }
+        state.habits.forEach(function (habit) {
+          listEl.appendChild(habitRowHtml(habit));
+        });
+      }
+
+      function updateRow(habitId) {
+        var row = listEl.querySelector('.habit-row[data-id="' + habitId + '"]');
+        if (!row) return;
+        var done = isDone(habitId);
+        row.className = "habit-row" + (done ? " done" : "");
+        row.setAttribute("aria-pressed", done ? "true" : "false");
+        row.title = done ? "点击取消完成" : "点击打勾";
+
+        var mini = row.querySelector(".streak-mini");
+        if (mini) {
+          var streak = streakFor(habitId);
+          mini.className = "streak-mini" + (streak < 2 ? " hidden" : "");
+          mini.textContent = "连续 " + streak + " 天";
+        }
+      }
+
+      function renderWeek() {
+        weekGridEl.innerHTML = "";
+        var days = weekDays();
+        var labels = ["日", "一", "二", "三", "四", "五", "六"];
+        var total = state.habits.length;
+        days.forEach(function (dateKey) {
+          var date = new Date(dateKey + "T12:00:00");
+          var done = doneCountFor(dateKey);
+          var cell = document.createElement("div");
+          cell.className = "day-cell";
+
+          var label = document.createElement("span");
+          label.className = "day-label" + (dateKey === today ? " today" : "");
+          label.textContent = (dateKey === today ? "今天" : "周" + labels[date.getDay()]);
+
+          var dot = document.createElement("div");
+          var ratio = total ? done / total : 0;
+          dot.className = "day-dot" + (ratio === 1 ? " filled" : ratio > 0 ? " partial" : "") +
+            (dateKey === today ? " today" : "");
+          dot.setAttribute("aria-label", dateKey + " 完成 " + done + "/" + total);
+
+          var count = document.createElement("span");
+          count.className = "day-count";
+          count.textContent = done + "/" + total;
+
+          cell.appendChild(label);
+          cell.appendChild(dot);
+          cell.appendChild(count);
+          weekGridEl.appendChild(cell);
+        });
+      }
+
+      function renderSummary() {
+        var done = 0;
+        state.habits.forEach(function (habit) {
+          if (isDone(habit.id)) done += 1;
+        });
+        var total = state.habits.length;
+        var percent = total ? Math.round(done / total * 100) : 0;
+
+        document.getElementById("doneCount").textContent = done;
+        document.getElementById("totalCount").textContent = total;
+        document.getElementById("streakCount").textContent = maxStreak();
+        document.getElementById("progressFill").style.width = percent + "%";
+        document.getElementById("progressPercent").textContent = percent + "%";
+        var track = document.getElementById("progressTrack");
+        track.setAttribute("aria-valuenow", String(percent));
+        document.getElementById("listHint").textContent =
+          done === total && total > 0 ? "全部完成，太棒了" : "点一下打勾";
+      }
+
+      function render() {
+        renderSummary();
+        renderList();
+        renderWeek();
+      }
+
+      function renderDate() {
+        var now = new Date();
+        var weekNames = ["日", "一", "二", "三", "四", "五", "六"];
+        document.getElementById("todayTitle").textContent =
+          now.getMonth() + 1 + "月" + now.getDate() + "日";
+        document.getElementById("dateLine").textContent =
+          now.getFullYear() + "年 · 周" + weekNames[now.getDay()];
+      }
+
+      formEl.addEventListener("submit", function (event) {
+        event.preventDefault();
+        addHabit(inputEl.value);
+        inputEl.value = "";
+        inputEl.focus();
+      });
+
+      function checkDayRollover() {
+        var stored = localStorage.getItem(TODAY_KEY);
+        var current = localDateString(new Date());
+        if (stored && stored !== current) {
+          today = current;
+          save();
+          render();
+        }
+      }
+
+      load();
+      renderDate();
+      render();
+      checkDayRollover();
+    })();
+  </script>
+</body>
+</html>
