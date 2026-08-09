@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的 GitHub 项目</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f4f0e7;
+    color: #2b2722;
+    font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: min(1080px, 100%);
+    margin: 0 auto;
+    padding: 44px 22px 60px;
+  }
+
+  header {
+    padding: 8px 4px 26px;
+    border-bottom: 1px solid #ddd3c0;
+  }
+
+  header h1 {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  header p {
+    margin-top: 10px;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 14px;
+    color: #6f675c;
+  }
+
+  .grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .card {
+    display: block;
+    background: #fffdf8;
+    border: 1px solid #e2dac8;
+    border-radius: 8px;
+    padding: 18px 18px 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  }
+
+  .card:hover {
+    border-color: #4d7860;
+    box-shadow: 0 10px 24px rgba(43, 39, 34, .10);
+    transform: translateY(-2px);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .card h3 {
+    font-size: 19px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .badge {
+    flex: none;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 12px;
+    color: #3f7a5a;
+    border: 1px solid #9cc2ab;
+    border-radius: 999px;
+    padding: 3px 8px;
+  }
+
+  .card p {
+    margin-top: 10px;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #6f675c;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card .link {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 13px;
+    color: #3f5d6b;
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 28px 14px 40px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>我的 GitHub 项目</h1>
+      <p>已部署的项目可直接打开网页，其他项目点击进入 GitHub 仓库；以后新增部署会持续收录在这里。</p>
+    </header>
+    <section class="grid" id="list" aria-label="项目列表"></section>
+  </main>
+
+<script>
+  // 以后新增部署项目时，在此数组顶部添加一行即可
+  const PROJECTS = [
+    { name: "quote-card", desc: "引文卡片生成器：输入问答，自动生成可分享的高清图片", url: "https://bianruijiang.github.io/quote-card/", live: true },
+    { name: "school-bell-system", desc: "校园作息铃声系统：可编辑作息时间表、自动打铃", url: "https://bianruijiang.github.io/school-bell-system/", live: true },
+    { name: "pomodoro-timer", desc: "番茄钟：专注计时工具", url: "https://bianruijiang.github.io/pomodoro-timer/", live: true },
+    { name: "BianRuiJiang.github.io", desc: "个人博客：Hexo 部署的个人主页", url: "https://bianruijiang.github.io/" },
+    { name: "ebook-treasure-chest", desc: "电子书下载宝库", url: "https://github.com/BianRuiJiang/ebook-treasure-chest" },
+    { name: "pics", desc: "图片资源", url: "https://github.com/BianRuiJiang/pics" },
+    { name: "Prolet", desc: "历史文献资料", url: "https://github.com/BianRuiJiang/Prolet" },
+    { name: "house", desc: "资料合集，含完整版 PDF 下载", url: "https://github.com/BianRuiJiang/house" },
+    { name: "kkndme_tianya", desc: "天涯 kkndme 神贴聊房价", url: "https://github.com/BianRuiJiang/kkndme_tianya" },
+    { name: "dm-ticket", desc: "大麦网自动购票，支持 Docker 一键部署", url: "https://github.com/BianRuiJiang/dm-ticket" },
+    { name: "picturebed2", desc: "图床服务", url: "https://github.com/BianRuiJiang/picturebed2" },
+    { name: "Political-Science", desc: "政治学资料", url: "https://github.com/BianRuiJiang/Political-Science" },
+    { name: "picture-bed", desc: "图床", url: "https://github.com/BianRuiJiang/picture-bed" },
+    { name: "PBL", desc: "基于项目的学习", url: "https://github.com/BianRuiJiang/PBL" },
+    { name: "sspanel-mining", desc: "采集、清洗与分类公开的 sspanel-uim 站点", url: "https://github.com/BianRuiJiang/sspanel-mining" },
+    { name: "CS-Notes", desc: "技术面试必备基础知识、LeetCode、操作系统、网络", url: "https://github.com/BianRuiJiang/CS-Notes" },
+    { name: "readingKK", desc: "kk 天涯贴阅读感想", url: "https://github.com/BianRuiJiang/readingKK" },
+    { name: "awesome-drones-zh", desc: "无人机资源汇总", url: "https://github.com/BianRuiJiang/awesome-drones-zh" },
+    { name: "China-software-copyright", desc: "中国软件著作权申请模板", url: "https://github.com/BianRuiJiang/China-software-copyright" },
+    { name: "loving-books", desc: "书籍资源", url: "https://github.com/BianRuiJiang/loving-books" },
+    { name: "SummaryOfLoanSuspension", desc: "全国各省市停贷通知汇总", url: "https://github.com/BianRuiJiang/SummaryOfLoanSuspension" },
+    { name: "brj-panda", desc: "博客", url: "https://github.com/BianRuiJiang/brj-panda" },
+    { name: "blog", desc: "博客项目", url: "https://github.com/BianRuiJiang/blog" },
+    { name: "coder2gwy", desc: "互联网首份程序员考公指南", url: "https://github.com/BianRuiJiang/coder2gwy" },
+    { name: "wildcat-vip-account", desc: "各类会员账号分享与工具", url: "https://github.com/BianRuiJiang/wildcat-vip-account" },
+    { name: "How-To-Ask-Questions-The-Smart-Way", desc: "如何正确地提出技术问题", url: "https://github.com/BianRuiJiang/How-To-Ask-Questions-The-Smart-Way" },
+    { name: "tianya-kkndme", desc: "天涯 kkndme 神贴聊房价完整版爬取", url: "https://github.com/BianRuiJiang/tianya-kkndme" },
+    { name: "free-books", desc: "互联网上的免费书籍", url: "https://github.com/BianRuiJiang/free-books" },
+    { name: "WeChatPlugin", desc: "微信小助手", url: "https://github.com/BianRuiJiang/WeChatPlugin" },
+    { name: "test", desc: "测试仓库", url: "https://github.com/BianRuiJiang/test" },
+    { name: "fuck-paywall", desc: "移除华尔街日报与经济学人的付费墙", url: "https://github.com/BianRuiJiang/fuck-paywall" }
+  ];
+
+  const list = document.getElementById("list");
+  PROJECTS.forEach((p) => {
+    const card = document.createElement("a");
+    card.className = "card";
+    card.href = p.url;
+    card.target = "_blank";
+    card.rel = "noopener";
+    card.innerHTML =
+      '<div class="card-top"><h3>' + p.name + '</h3>' +
+      (p.live ? '<span class="badge">在线</span>' : "") +
+      '</div><p>' + (p.desc || "GitHub 项目") + '</p>' +
+      '<span class="link">' + (p.live ? "打开网页" : "查看仓库") + ' →</span>';
+    list.appendChild(card);
+  });
+</script>
+</body>
+</html>
