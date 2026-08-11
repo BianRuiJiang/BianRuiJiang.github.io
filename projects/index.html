@@ -4,146 +4,405 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>我的 GitHub 项目</title>
+<meta name="description" content="已上线部署的项目合集：引文卡片、校园作息铃声系统、番茄钟，打开网页即可使用。">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="/img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="我的 GitHub 项目">
+<meta property="og:url" content="https://bianruijiang.github.io/projects/">
+<meta property="og:image" content="https://bianruijiang.github.io/img/home_page_banner.png">
+<meta property="og:description" content="已上线部署的项目合集：引文卡片、校园作息铃声系统、番茄钟。">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
 <style>
+  :root {
+    --bg: #f4f6f8;
+    --surface: #ffffff;
+    --ink: #1f2933;
+    --muted: #5b6470;
+    --line: #e3e8ee;
+    --brand: #0f766e;
+    --brand-strong: #0b5f59;
+    --shadow: 0 1px 2px rgba(15, 23, 42, .05), 0 10px 30px rgba(15, 23, 42, .06);
+    --radius: 8px;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #f4f0e7;
-    color: #2b2722;
-    font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
   .page {
-    width: min(1080px, 100%);
+    width: min(1120px, 100%);
     margin: 0 auto;
-    padding: 44px 22px 60px;
+    padding: 28px 22px 56px;
   }
 
-  header {
-    padding: 8px 4px 26px;
-    border-bottom: 1px solid #ddd3c0;
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
   }
 
-  header h1 {
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--brand-strong);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 6px 4px;
+    border-radius: 6px;
+  }
+
+  .back-link:hover { color: #08433f; }
+
+  .back-link:focus-visible,
+  .shot:focus-visible,
+  .title-row a:focus-visible,
+  .btn:focus-visible,
+  .gh:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  .count {
+    flex: none;
+    font-size: 13px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+
+  .hero {
+    padding: 34px 4px 30px;
+  }
+
+  h1 {
     font-size: 30px;
-    font-weight: 600;
+    font-weight: 650;
     letter-spacing: 0;
   }
 
-  header p {
+  .hero p {
     margin-top: 10px;
-    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    font-size: 14px;
-    color: #6f675c;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 640px;
   }
 
   .grid {
-    margin-top: 28px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
   }
 
   .card {
-    display: block;
-    background: #fffdf8;
-    border: 1px solid #e2dac8;
-    border-radius: 8px;
-    padding: 18px 18px 16px;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   }
 
   .card:hover {
-    border-color: #4d7860;
-    box-shadow: 0 10px 24px rgba(43, 39, 34, .10);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, .10);
+    border-color: #cbd5e0;
   }
 
-  .card-top {
+  .shot {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #eef1f4;
+    text-decoration: none;
+  }
+
+  .shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .35s ease;
+  }
+
+  .card:hover .shot img { transform: scale(1.03); }
+
+  .body {
+    padding: 16px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .title-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
   }
 
-  .card h3 {
-    font-size: 19px;
-    font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .title-row h2 {
+    font-size: 18px;
+    font-weight: 650;
+    letter-spacing: 0;
+    min-width: 0;
   }
+
+  .title-row a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .title-row a:hover { color: var(--brand-strong); }
 
   .badge {
     flex: none;
-    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-size: 12px;
-    color: #3f7a5a;
-    border: 1px solid #9cc2ab;
+    font-weight: 600;
+    color: #047857;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
     border-radius: 999px;
-    padding: 3px 8px;
+    padding: 3px 9px;
   }
 
-  .card p {
-    margin-top: 10px;
-    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    font-size: 13px;
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+  }
+
+  .desc {
+    margin-top: 9px;
+    font-size: 13.5px;
     line-height: 1.65;
-    color: #6f675c;
+    color: var(--muted);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  .card .link {
-    display: inline-block;
+  .meta {
     margin-top: 14px;
-    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    font-size: 13px;
-    color: #3f5d6b;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
   }
 
-  @media (max-width: 640px) {
-    .page { padding: 28px 14px 40px; }
+  .tag {
+    font-size: 12px;
+    color: #3f5d6b;
+    background: #eef6f8;
+    border: 1px solid #d7e7ec;
+    border-radius: 6px;
+    padding: 3px 8px;
+  }
+
+  .updated {
+    margin-left: auto;
+    font-size: 12px;
+    color: #7a8591;
+    white-space: nowrap;
+  }
+
+  .actions {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #eef1f4;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--brand);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: 7px;
+    padding: 8px 13px;
+    transition: background .15s ease;
+  }
+
+  .btn:hover { background: var(--brand-strong); }
+
+  .gh {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 8px 10px;
+    border-radius: 7px;
+  }
+
+  .gh:hover {
+    color: var(--ink);
+    background: #f3f5f7;
+  }
+
+  footer {
+    margin-top: 42px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: #8a94a0;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  footer a {
+    color: #64707d;
+    text-decoration: none;
+  }
+
+  footer a:hover { color: var(--brand-strong); }
+
+  @media (max-width: 760px) {
+    .page { padding: 18px 14px 40px; }
     .grid { grid-template-columns: 1fr; }
+    h1 { font-size: 25px; }
+    .hero { padding: 24px 2px 22px; }
+    .updated { margin-left: 0; }
   }
 </style>
 </head>
 <body>
   <main class="page">
-    <header>
+    <div class="topbar">
+      <a class="back-link" href="/" aria-label="返回主站首页">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        返回主页
+      </a>
+      <span class="count">3 个项目 · 持续更新</span>
+    </div>
+
+    <header class="hero">
       <h1>我的 GitHub 项目</h1>
-      <p>这里收录已部署上线的项目，点击可直接打开；以后新增部署会持续收录在这里。</p>
+      <p>已上线部署的独立项目，打开网页即可使用；每个项目都提供公开源码。</p>
     </header>
-    <section class="grid" id="list" aria-label="项目列表"></section>
+
+    <section class="grid" aria-label="项目列表">
+      <article class="card">
+        <a class="shot" href="https://bianruijiang.github.io/quote-card/" target="_blank" rel="noopener" aria-label="打开引文卡片生成器">
+          <img src="img/quote-card.jpg" alt="引文卡片生成器界面预览" width="1280" height="800" loading="lazy">
+        </a>
+        <div class="body">
+          <div class="title-row">
+            <h2><a href="https://bianruijiang.github.io/quote-card/" target="_blank" rel="noopener">引文卡片生成器</a></h2>
+            <span class="badge"><span class="dot" aria-hidden="true"></span>在线</span>
+          </div>
+          <p class="desc">输入问答，自动生成可分享的高清引文卡片图片，支持黑白主题。</p>
+          <div class="meta">
+            <span class="tag">图片生成</span>
+            <span class="tag">效率工具</span>
+            <span class="updated">更新于 2026-08-10</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="https://bianruijiang.github.io/quote-card/" target="_blank" rel="noopener">
+              打开网页
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+            <a class="gh" href="https://github.com/BianRuiJiang/quote-card" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+              源码
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="shot" href="https://bianruijiang.github.io/school-bell-system/" target="_blank" rel="noopener" aria-label="打开校园作息铃声系统">
+          <img src="img/school-bell-system.jpg" alt="校园作息铃声系统界面预览" width="1280" height="800" loading="lazy">
+        </a>
+        <div class="body">
+          <div class="title-row">
+            <h2><a href="https://bianruijiang.github.io/school-bell-system/" target="_blank" rel="noopener">校园作息铃声系统</a></h2>
+            <span class="badge"><span class="dot" aria-hidden="true"></span>在线</span>
+          </div>
+          <p class="desc">可编辑的校园作息时间表，到点自动播放上下课铃声。</p>
+          <div class="meta">
+            <span class="tag">校园工具</span>
+            <span class="tag">自动打铃</span>
+            <span class="updated">更新于 2026-08-06</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="https://bianruijiang.github.io/school-bell-system/" target="_blank" rel="noopener">
+              打开网页
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+            <a class="gh" href="https://github.com/BianRuiJiang/school-bell-system" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+              源码
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="shot" href="https://bianruijiang.github.io/pomodoro-timer/" target="_blank" rel="noopener" aria-label="打开番茄钟">
+          <img src="img/pomodoro-timer.jpg" alt="番茄钟界面预览" width="1280" height="800" loading="lazy">
+        </a>
+        <div class="body">
+          <div class="title-row">
+            <h2><a href="https://bianruijiang.github.io/pomodoro-timer/" target="_blank" rel="noopener">番茄钟</a></h2>
+            <span class="badge"><span class="dot" aria-hidden="true"></span>在线</span>
+          </div>
+          <p class="desc">经典番茄工作法计时器，支持专注、短休和长休循环。</p>
+          <div class="meta">
+            <span class="tag">专注计时</span>
+            <span class="tag">效率工具</span>
+            <span class="updated">更新于 2026-08-01</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="https://bianruijiang.github.io/pomodoro-timer/" target="_blank" rel="noopener">
+              打开网页
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+            <a class="gh" href="https://github.com/BianRuiJiang/pomodoro-timer" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+              源码
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <span>© 2026 BianRuiJiang</span>
+      <a href="/">bianruijiang.github.io</a>
+    </footer>
   </main>
-
-<script>
-  // 以后新增部署项目时，在此数组顶部添加一行即可
-  const PROJECTS = [
-    { name: "quote-card", desc: "引文卡片生成器：输入问答，自动生成可分享的高清图片", url: "https://bianruijiang.github.io/quote-card/", live: true },
-    { name: "school-bell-system", desc: "校园作息铃声系统：可编辑作息时间表、自动打铃", url: "https://bianruijiang.github.io/school-bell-system/", live: true },
-    { name: "pomodoro-timer", desc: "番茄钟：专注计时工具", url: "https://bianruijiang.github.io/pomodoro-timer/", live: true }
-  ];
-
-  const list = document.getElementById("list");
-  PROJECTS.forEach((p) => {
-    const card = document.createElement("a");
-    card.className = "card";
-    card.href = p.url;
-    card.target = "_blank";
-    card.rel = "noopener";
-    card.innerHTML =
-      '<div class="card-top"><h3>' + p.name + '</h3>' +
-      (p.live ? '<span class="badge">在线</span>' : "") +
-      '</div><p>' + (p.desc || "GitHub 项目") + '</p>' +
-      '<span class="link">' + (p.live ? "打开网页" : "查看仓库") + ' →</span>';
-    list.appendChild(card);
-  });
-</script>
 </body>
 </html>
