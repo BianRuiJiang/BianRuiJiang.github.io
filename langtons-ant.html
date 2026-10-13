@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>兰顿蚂蚁 · 模拟实验室</title>
+<style>
+:root{color-scheme:dark;--bg:#10151d;--panel:#19222e;--line:#2b3949;--text:#e8eef5;--muted:#9aaabd;--accent:#7dd3fc}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#1c2a3b 0,transparent 40%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:1200px;margin:auto;padding:28px 20px 40px}header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:20px}h1{font-size:clamp(25px,4vw,36px);margin:0;letter-spacing:-.04em}header p{margin:7px 0 0;color:var(--muted)}.pill{border:1px solid #365268;color:var(--accent);border-radius:999px;padding:5px 10px;font-size:12px;white-space:nowrap}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px}.panel{background:rgba(25,34,46,.92);border:1px solid var(--line);border-radius:16px;overflow:hidden}.board-wrap{padding:14px}.board-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 12px;color:var(--muted);font-size:13px}canvas{display:block;width:100%;height:auto;aspect-ratio:1;background:#f3f5f7;border-radius:9px;image-rendering:pixelated}.controls{padding:18px;display:flex;flex-direction:column;gap:18px}.section-title{font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:9px}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}button,select,input{font:inherit}button{cursor:pointer;color:var(--text);background:#263446;border:1px solid #3a4c61;border-radius:9px;padding:10px 12px;transition:.15s}button:hover{background:#30445a;border-color:#5b7896}button.primary{background:#087eaa;border-color:#159bc9;color:white}button.primary:hover{background:#0995c7}button:disabled{opacity:.4;cursor:not-allowed}.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat{padding:11px;border:1px solid var(--line);border-radius:10px;background:#141d27}.stat span{display:block;font-size:12px;color:var(--muted)}.stat strong{display:block;font-size:21px;margin-top:2px;font-variant-numeric:tabular-nums}.field{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:10px 0}.field label{color:#d4deea;font-size:13px}.field output{color:var(--accent);font-variant-numeric:tabular-nums}input[type=range]{width:100%;accent-color:var(--accent)}select{width:100%;background:#141d27;color:var(--text);border:1px solid #3a4c61;border-radius:8px;padding:9px}.hint{color:var(--muted);font-size:12px}.legend{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted)}.swatch{width:12px;height:12px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-2px}.footer{color:var(--muted);font-size:12px;margin-top:14px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.controls{display:grid;grid-template-columns:1fr 1fr;gap:18px}.controls .full{grid-column:1/-1}header{align-items:flex-start;flex-direction:column}}
+@media(max-width:480px){main{padding:18px 12px}.controls{grid-template-columns:1fr}.controls .full{grid-column:auto}.board-wrap{padding:9px}}
+</style>
+</head>
+<body>
+<main>
+<header><div><h1>兰顿蚂蚁</h1><p>从简单规则中，观察复杂秩序如何涌现。</p></div><span class="pill">CELLULAR AUTOMATON</span></header>
+<div class="layout">
+<section class="panel board-wrap">
+<div class="board-head"><span>模拟网格</span><span id="boardInfo">101 × 101 · 中心出发</span></div>
+<canvas id="board" width="707" height="707" aria-label="兰顿蚂蚁模拟画布"></canvas>
+<div class="legend" style="margin-top:12px"><span><i class="swatch" style="background:#f3f5f7;border:1px solid #cbd5e1"></i>白色格</span><span><i class="swatch" style="background:#263446"></i>黑色格</span><span>▲ 蚂蚁当前位置</span></div>
+<div class="footer">规则：白格右转并翻黑；黑格左转并翻白，然后前进一步。</div>
+</section>
+<aside class="panel controls">
+<div class="full">
+<div class="section-title">运行控制</div>
+<div class="buttons">
+<button class="primary" id="toggle">▶ 开始</button><button id="step">走一步</button>
+<button id="reset">↺ 重置</button><button id="clear">清空网格</button>
+</div>
+</div>
+<div>
+<div class="section-title">模拟速度</div>
+<div class="field"><label for="speed">每秒步数</label><output id="speedOut">120</output></div>
+<input id="speed" type="range" min="1" max="1200" value="120" step="1">
+<div class="hint">速度越高，蚂蚁移动越快。</div>
+</div>
+<div>
+<div class="section-title">网格设置</div>
+<div class="field"><label for="size">网格大小</label></div>
+<select id="size"><option value="51">51 × 51（小）</option><option value="101" selected>101 × 101（标准）</option><option value="151">151 × 151（大）</option><option value="201">201 × 201（超大）</option></select>
+<div class="field"><label for="startDir">初始方向</label></div>
+<select id="startDir"><option value="0">向上</option><option value="1">向右</option><option value="2">向下</option><option value="3">向左</option></select>
+</div>
+<div class="full">
+<div class="section-title">实时数据</div>
+<div class="stats">
+<div class="stat"><span>已走步数</span><strong id="steps">0</strong></div>
+<div class="stat"><span>黑色格数</span><strong id="black">0</strong></div>
+<div class="stat"><span>当前位置 X</span><strong id="posX">50</strong></div>
+<div class="stat"><span>当前位置 Y</span><strong id="posY">50</strong></div>
+</div>
+</div>
+<div class="full hint">提示：运行约数千步后，通常会出现一条规律的“高速公路”。重置会按当前网格大小重新开始。</div>
+</aside>
+</div>
+</main>
+<script>
+(() => {
+const canvas=document.getElementById('board'),ctx=canvas.getContext('2d');
+const $=id=>document.getElementById(id);
+let n=101,grid, x,y,dir,steps=0,black=0,running=false,last=0,acc=0,raf=0;
+const dx=[0,1,0,-1],dy=[-1,0,1,0],names=['向上','向右','向下','向左'];
+function init(clearOnly=false){
+ pause(); n=+$('size').value; grid=new Uint8Array(n*n); x=Math.floor(n/2);y=Math.floor(n/2);dir=+$('startDir').value;steps=0;black=0;
+ $('boardInfo').textContent=`${n} × ${n} · 中心出发`;
+ updateStats(); draw();
+}
+function pause(){running=false;$('toggle').textContent='▶ 开始';$('toggle').classList.add('primary');if(raf)cancelAnimationFrame(raf);raf=0;acc=0;}
+function tick(){
+ const i=y*n+x;
+ if(grid[i]===0){dir=(dir+1)%4;grid[i]=1;black++}
+ else{dir=(dir+3)%4;grid[i]=0;black--}
+ x=(x+dx[dir]+n)%n;y=(y+dy[dir]+n)%n;steps++;
+}
+function draw(){
+ const s=canvas.width/n;ctx.fillStyle='#f3f5f7';ctx.fillRect(0,0,canvas.width,canvas.height);
+ if(black){ctx.fillStyle='#263446';for(let i=0;i<grid.length;i++)if(grid[i])ctx.fillRect((i%n)*s,Math.floor(i/n)*s,Math.ceil(s),Math.ceil(s));}
+ const cx=x*s,cy=y*s;
+ ctx.fillStyle='#06a6d7';ctx.beginPath();
+ if(dir===0){ctx.moveTo(cx+s/2,cy+s*.12);ctx.lineTo(cx+s*.12,cy+s*.88);ctx.lineTo(cx+s*.88,cy+s*.88)}
+ else if(dir===1){ctx.moveTo(cx+s*.88,cy+s/2);ctx.lineTo(cx+s*.12,cy+s*.12);ctx.lineTo(cx+s*.12,cy+s*.88)}
+ else if(dir===2){ctx.moveTo(cx+s/2,cy+s*.88);ctx.lineTo(cx+s*.12,cy+s*.12);ctx.lineTo(cx+s*.88,cy+s*.12)}
+ else{ctx.moveTo(cx+s*.12,cy+s/2);ctx.lineTo(cx+s*.88,cy+s*.12);ctx.lineTo(cx+s*.88,cy+s*.88)}
+ ctx.closePath();ctx.fill();
+}
+function updateStats(){$('steps').textContent=steps.toLocaleString();$('black').textContent=black.toLocaleString();$('posX').textContent=x;$('posY').textContent=y;}
+function frame(t){
+ if(!running)return;
+ if(!last)last=t;let elapsed=Math.min(100,t-last);last=t;
+ acc+=elapsed*(+$('speed').value)/1000;
+ const count=Math.min(Math.floor(acc),20000);acc-=count;
+ for(let i=0;i<count;i++)tick();
+ if(count){draw();updateStats();}
+ raf=requestAnimationFrame(frame);
+}
+$('toggle').addEventListener('click',()=>{if(running){pause()}else{running=true;last=0;$('toggle').textContent='Ⅱ 暂停';$('toggle').classList.remove('primary');raf=requestAnimationFrame(frame)}});
+$('step').addEventListener('click',()=>{pause();tick();draw();updateStats()});
+$('reset').addEventListener('click',()=>init());
+$('clear').addEventListener('click',()=>init(true));
+$('size').addEventListener('change',()=>init());
+$('startDir').addEventListener('change',()=>init());
+$('speed').addEventListener('input',()=>{$('speedOut').textContent=$('speed').value});
+init();
+})();
+</script>
+</body>
+</html>
